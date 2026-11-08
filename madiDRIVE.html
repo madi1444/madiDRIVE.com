@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="kk"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>madiDRIVE</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#0a0e22;--card:rgba(255,255,255,.07);--tx:#f0f3ff;--mu:#9aa6d4;--bd:rgba(255,255,255,.14);--ac:#7c8cff;--ac2:#ff5fb0;--g1:#2dd4ff;--g2:#34f5a0;--inp:#141a3a}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){color-scheme:light;--bg:#eef1ff;--card:rgba(255,255,255,.8);--tx:#161c3d;--mu:#5c6894;--bd:rgba(40,60,140,.16);--inp:#fff}}
+:root[data-theme="light"]{--bg:#eef1ff;--card:rgba(255,255,255,.8);--tx:#161c3d;--mu:#5c6894;--bd:rgba(40,60,140,.16);--inp:#fff}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.45;overflow-x:hidden}
+.bl{position:fixed;border-radius:50%;filter:blur(80px);opacity:.45;z-index:-1;animation:fl 14s ease-in-out infinite alternate}
+.b1{width:340px;height:340px;background:var(--ac);top:-80px;left:-80px}.b2{width:300px;height:300px;background:var(--ac2);bottom:-60px;right:-60px;animation-delay:-5s}.b3{width:240px;height:240px;background:var(--g1);top:40%;left:55%;animation-delay:-9s;opacity:.25}
+@keyframes fl{to{transform:translate(60px,40px) scale(1.15)}}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;backdrop-filter:blur(14px);background:var(--card);border-bottom:1px solid var(--bd);padding:10px 14px;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.logo{font-weight:900;font-size:22px}.logo b{background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
+header input{flex:1;min-width:140px;max-width:380px;margin-left:auto}
+main{max-width:920px;margin:0 auto;padding:16px 14px 70px}
+button,select,input,textarea{font:inherit;color:var(--tx);background:var(--inp);border:1px solid var(--bd);border-radius:12px;padding:9px 12px}
+button{cursor:pointer;transition:transform .15s}button:hover{transform:translateY(-2px)}
+.pri{background:linear-gradient(90deg,var(--ac),var(--ac2));color:#fff;border:0;font-weight:700}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.stat{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:12px;text-align:center;backdrop-filter:blur(10px)}
+.stat b{font-size:24px;display:block}.stat span{font-size:12px;color:var(--mu)}
+.crumb{margin:6px 0 12px}.crumb a{color:var(--g1);cursor:pointer;font-weight:600}.crumb span{color:var(--mu)}
+h2{font-size:13px;color:var(--mu);margin:20px 0 8px;letter-spacing:.8px;text-transform:uppercase}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.chip{padding:6px 14px;border-radius:99px;border:1px solid var(--bd);background:var(--card);cursor:pointer;font-size:13px}.chip.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+.fold{border-radius:18px;padding:14px;cursor:pointer;display:flex;align-items:center;gap:10px;color:#fff;position:relative;transition:transform .2s;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.fold:hover{transform:translateY(-4px) rotate(-1deg)}.fold i{font-style:normal;font-size:28px}.fold span{flex:1;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fold button{padding:0 7px;border:0;background:rgba(0,0,0,.25);color:#fff;border-radius:8px}
+.list{display:grid;gap:10px}
+.file{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:12px;display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;backdrop-filter:blur(10px);animation:pop .3s}
+@keyframes pop{from{opacity:0;transform:scale(.95)}}
+.ic{font-size:30px}.info{flex:1;min-width:150px}.nm{font-weight:700;overflow-wrap:anywhere}.mu{color:var(--mu);font-size:13px}.note{font-size:13px;margin-top:4px;color:var(--mu);font-style:italic}
+.ctl{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.st{padding:4px 12px;border-radius:99px;font-size:12px;font-weight:800;color:#06102a;white-space:nowrap}
+.s0{background:var(--g1);box-shadow:0 0 10px var(--g1),0 0 24px var(--g1);animation:gl 1.8s ease-in-out infinite}
+.s1{background:var(--g2);box-shadow:0 0 10px var(--g2),0 0 24px var(--g2)}
+@keyframes gl{50%{filter:brightness(1.35);box-shadow:0 0 4px var(--g1)}}
+.drop{border:2px dashed var(--bd);border-radius:18px;padding:18px;text-align:center;color:var(--mu);margin-top:16px}
+.drop.over{border-color:var(--g1);box-shadow:0 0 20px var(--g1);color:var(--tx)}
+.empty{padding:26px;text-align:center;color:var(--mu);background:var(--card);border-radius:16px;border:1px dashed var(--bd)}
+dialog{border:1px solid var(--bd);border-radius:20px;background:var(--bg);color:var(--tx);padding:18px;width:min(92vw,400px)}
+dialog::backdrop{background:rgba(0,0,0,.55);backdrop-filter:blur(4px)}
+dialog label{display:block;font-size:13px;color:var(--mu);margin:10px 0 4px}dialog input,dialog textarea,dialog select{width:100%}
+.pick{display:flex;gap:6px;flex-wrap:wrap}.pick b{width:30px;height:30px;border-radius:50%;cursor:pointer;border:3px solid transparent}.pick b.on{border-color:var(--tx)}.pick u{text-decoration:none;font-size:22px;cursor:pointer;padding:2px 4px;border-radius:8px}.pick u.on{background:var(--bd)}
+.cf{position:fixed;top:-20px;font-size:22px;z-index:99;pointer-events:none;animation:fall 2s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg);opacity:.6}}
+.sc{height:190px;display:flex;justify-content:center;align-items:center;gap:56px;perspective:700px;overflow:hidden}
+.cube{--s:90px;width:var(--s);height:var(--s);position:relative;transform-style:preserve-3d;animation:spin 12s linear infinite}
+.cube div{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:38px;border:1px solid var(--bd);border-radius:12px;background:linear-gradient(135deg,rgba(124,140,255,.35),rgba(255,95,176,.3));box-shadow:inset 0 0 18px rgba(255,255,255,.18)}
+.ring{--r:105px;width:60px;height:60px;position:relative;transform-style:preserve-3d;animation:ry 14s linear infinite;margin-left:20px}
+.ring div{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:34px;filter:drop-shadow(0 0 8px var(--ac))}
+@keyframes spin{to{transform:rotateX(360deg) rotateY(360deg)}}
+@keyframes ry{from{transform:rotateX(-18deg) rotateY(0)}to{transform:rotateX(-18deg) rotateY(360deg)}}
+.fw{position:fixed;perspective:500px;z-index:-1;opacity:.75}
+.fw .cube{--s:46px;animation-duration:9s}.fw .cube div{font-size:18px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){.cube,.ring{animation:none}}
+</style></head><body>
+<div class="bl b1"></div><div class="bl b2"></div><div class="bl b3"></div>
+<div class="fw" style="top:14%;right:6%"><div class="cube" data-e="⭐✨"></div></div><div class="fw" style="top:58%;left:4%"><div class="cube" data-e="📁📄" style="animation-duration:13s"></div></div><div class="fw" style="bottom:12%;right:12%"><div class="cube" data-e="✅🎉" style="animation-duration:7s"></div></div>
+<header><div class="logo">madi<b>DRIVE</b> ✨</div><input id="q" placeholder="🔍 Іздеу..."></header>
+<main>
+<div class="sc"><div class="cube" data-e="📁📄✅⭐🎵🎨"></div><div class="ring" data-e="📁📄✅⭐🎵🎨"></div></div>
+<div class="stats"><div class="stat"><b id="n0">0</b><span>орындалып жатыр</span></div><div class="stat"><b id="n1">0</b><span>орындалды</span></div><div class="stat"><b id="n2">0</b><span>папка</span></div></div>
+<div class="row"><button class="pri" onclick="openF()">📁 Жаңа папка</button><button class="pri" onclick="openI()">✏️ Жазба қосу</button><button class="pri" onclick="document.getElementById('fi').click()">⬆ Файл жүктеу</button><input type="file" id="fi" multiple hidden></div>
+<div class="chips" id="chips"></div>
+<div class="crumb" id="crumb" style="margin-top:14px"></div>
+<div id="app"></div>
+<div class="drop" id="drop">📥 Файлдарды осы жерге тастаңыз</div>
+</main>
+<dialog id="df"><b>📁 Жаңа папка</b><label>Атауы</label><input id="fn" maxlength="40"><label>Түсі</label><div class="pick" id="pc"></div><label>Белгішесі</label><div class="pick" id="pe"></div><div class="row" style="margin-top:16px"><button class="pri" onclick="addF()">Жасау</button><button onclick="df.close()">Болдырмау</button></div></dialog>
+<dialog id="di"><b>✏️ Жазба қосу</b><div class="mu" style="font-size:13px">Кез келген зат, құжат немесе тапсырма атын жаз</div><label>Атауы</label><input id="in" maxlength="80"><label>Кім жауапты?</label><input id="io" maxlength="40"><label>Ескертпе</label><textarea id="inote" rows="3" maxlength="200"></textarea><label>Статусы</label><select id="ist"></select><div class="row" style="margin-top:16px"><button class="pri" onclick="addI()">Қосу</button><button onclick="di.close()">Болдырмау</button></div></dialog>
+<script>
+var ST=["Орындалып жатыр","Орындалды"],COL=["#6c5cff","#ff5fb0","#ff8a3d","#17b890","#2d9cff","#e2455c"],EM=["📁","📚","💼","🎓","🎮","🎵","📸","⭐","🔥","💡"];
+var DB={folders:[],files:[],next:1},cur=0,q="",flt=-1,pc=0,pe=0;
+try{var s=localStorage.getItem("madidrive3")||localStorage.getItem("madidrive2");if(s){DB=JSON.parse(s);DB.folders.forEach(function(f){f.c=f.c||0;f.e=f.e||"📁"});DB.files.forEach(function(f){f.owner=f.owner||"";f.note=f.note||""})}}catch(e){}
+function save(){try{localStorage.setItem("madidrive3",JSON.stringify(DB))}catch(e){}}
+function $(i){return document.getElementById(i)}
+function esc(x){return String(x).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function sz(b){return b>1e6?(b/1e6).toFixed(1)+" МБ":Math.max(1,Math.round(b/1e3))+" КБ"}
+function icon(f){if(f.size==null)return"📝";var e=(f.name.split(".").pop()||"").toLowerCase();return/xls|csv/.test(e)?"📊":/doc|txt/.test(e)?"📘":/pdf/.test(e)?"📕":/png|jpg|jpeg|gif|webp|svg/.test(e)?"🖼️":/mp4|mov|avi/.test(e)?"🎬":/mp3|wav/.test(e)?"🎵":/zip|rar/.test(e)?"🗜️":/ppt/.test(e)?"📙":"📄"}
+function path(){var p=[],id=cur;while(id){var f=DB.folders.find(function(x){return x.id==id});if(!f)break;p.unshift(f);id=f.parent}return p}
+function render(){
+ var c='<a onclick="go(0)">🏠 Менің дискім</a>';
+ path().forEach(function(f){c+=' <span>›</span> <a onclick="go('+f.id+')">'+esc(f.name)+'</a>'});
+ $("crumb").innerHTML=c;
+ $("n0").textContent=DB.files.filter(function(f){return f.st==0}).length;$("n1").textContent=DB.files.filter(function(f){return f.st==1}).length;$("n2").textContent=DB.folders.length;
+ $("chips").innerHTML=[["Барлығы",-1],["⏳ Орындалып жатыр",0],["✅ Орындалды",1]].map(function(x){return '<div class="chip'+(flt==x[1]?' on':'')+'" onclick="flt='+x[1]+';render()">'+x[0]+'</div>'}).join("");
+ var fl=DB.folders.filter(function(f){return f.parent==cur&&f.name.toLowerCase().indexOf(q)>-1});
+ var fi=DB.files.filter(function(f){return f.folder==cur&&f.name.toLowerCase().indexOf(q)>-1&&(flt<0||f.st==flt)});
+ var o="";
+ if(fl.length)o+='<h2>Папкалар</h2><div class="grid">'+fl.map(function(f){return '<div class="fold" style="background:linear-gradient(135deg,'+COL[f.c]+','+COL[(f.c+1)%6]+')" onclick="go('+f.id+')"><i>'+f.e+'</i><span>'+esc(f.name)+'</span><button onclick="event.stopPropagation();delFolder('+f.id+')">✕</button></div>'}).join("")+'</div>';
+ o+='<h2>Файлдар мен жазбалар</h2><div class="list">'+(fi.length?fi.map(function(f){return '<div class="file"><div class="ic">'+icon(f)+'</div><div class="info"><div class="nm">'+esc(f.name)+'</div><div class="mu">'+(f.size!=null?sz(f.size):"Жазба")+(f.owner?' · 👤 '+esc(f.owner):'')+'</div>'+(f.note?'<div class="note">'+esc(f.note)+'</div>':'')+'</div><div class="ctl"><span class="st s'+f.st+'">'+ST[f.st]+'</span><select onchange="setSt('+f.id+',this.value)">'+ST.map(function(t,i){return '<option value="'+i+'"'+(i==f.st?' selected':'')+'>'+t+'</option>'}).join("")+'</select><button onclick="delFile('+f.id+')">🗑</button></div></div>'}).join(""):'<div class="empty">🌈 Бұл жерде әзірге ештеңе жоқ.<br>Файл жүктеп немесе жазба қос!</div>')+'</div>';
+ $("app").innerHTML=o;
+}
+function go(id){cur=id;render()}
+function pick(){$("pc").innerHTML=COL.map(function(c,i){return '<b style="background:'+c+'" class="'+(i==pc?'on':'')+'" onclick="pc='+i+';pick()"></b>'}).join("");$("pe").innerHTML=EM.map(function(e,i){return '<u class="'+(i==pe?'on':'')+'" onclick="pe='+i+';pick()">'+e+'</u>'}).join("")}
+function openF(){$("fn").value="";pc=0;pe=0;pick();$("df").showModal()}
+function addF(){var n=$("fn").value.trim();if(!n)return;DB.folders.push({id:DB.next++,name:n,parent:cur,c:pc,e:EM[pe]});save();$("df").close();render()}
+function openI(){$("in").value="";$("io").value="";$("inote").value="";$("ist").innerHTML=ST.map(function(t,i){return '<option value="'+i+'">'+t+'</option>'}).join("");$("di").showModal()}
+function addI(){var n=$("in").value.trim();if(!n)return;var st=+$("ist").value;DB.files.push({id:DB.next++,name:n,size:null,folder:cur,st:st,owner:$("io").value.trim(),note:$("inote").value.trim()});save();$("di").close();render();if(st==1)boom()}
+function delFolder(id){if(!confirm("Папканы ішіндегілерімен бірге жою керек пе?"))return;var ids=[id],i=0;while(i<ids.length){DB.folders.forEach(function(f){if(f.parent==ids[i])ids.push(f.id)});i++}DB.folders=DB.folders.filter(function(f){return ids.indexOf(f.id)<0});DB.files=DB.files.filter(function(f){return ids.indexOf(f.folder)<0});save();render()}
+function delFile(id){DB.files=DB.files.filter(function(f){return f.id!=id});save();render()}
+function setSt(id,v){DB.files.find(function(f){return f.id==id}).st=+v;save();render();if(+v==1)boom()}
+function up(l){Array.prototype.forEach.call(l,function(f){DB.files.push({id:DB.next++,name:f.name,size:f.size,folder:cur,st:0,owner:"",note:""})});save();render()}
+function boom(){for(var i=0;i<24;i++){var e=document.createElement("div");e.className="cf";e.textContent=["🎉","✨","⭐","🎊"][i%4];e.style.left=Math.random()*100+"vw";e.style.animationDelay=Math.random()*.6+"s";document.body.appendChild(e);setTimeout(function(x){x.remove()},3000,e)}}
+$("fi").onchange=function(){up(this.files);this.value=""};
+$("q").oninput=function(){q=this.value.toLowerCase();render()};
+var d=$("drop");d.ondragover=function(e){e.preventDefault();d.classList.add("over")};d.ondragleave=function(){d.classList.remove("over")};d.ondrop=function(e){e.preventDefault();d.classList.remove("over");up(e.dataTransfer.files)};
+var T=["rotateY(0deg)","rotateY(90deg)","rotateY(180deg)","rotateY(-90deg)","rotateX(90deg)","rotateX(-90deg)"];
+document.querySelectorAll(".cube").forEach(function(el){var em=Array.from(el.dataset.e);el.innerHTML=T.map(function(t,i){return '<div style="transform:'+t+' translateZ(calc(var(--s) / 2))">'+em[i%em.length]+'</div>'}).join("")});
+document.querySelectorAll(".ring").forEach(function(el){var em=Array.from(el.dataset.e);el.innerHTML=em.map(function(e,i){return '<div style="transform:rotateY('+(i*360/em.length)+'deg) translateZ(var(--r))">'+e+'</div>'}).join("")});
+render();
+</script></body></html>
